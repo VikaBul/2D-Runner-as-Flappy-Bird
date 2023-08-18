@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
         pipes.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
     }
 
-    //второй вариант создания и движения труб через корутину
+    //the second option for creating and moving pipes
     /*void Start()
     {
         StartCoroutine(Spawn());
@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
             Destroy(newPrefab, 10);
         }
     }
-    public float speed; // скорость движения труб
+    public float speed; // pipes speed
 
     void Update()
     {
