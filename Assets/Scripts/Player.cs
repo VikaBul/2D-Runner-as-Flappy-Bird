@@ -12,6 +12,11 @@ public class Player : MonoBehaviour
 
     private Vector3 direction;
 
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip scoreSound;
+    public AudioClip flapSound;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
+            audioSource.PlayOneShot(flapSound);
             direction = Vector3.up * strength;
         }
         if (Input.touchCount > 0) //если коснуться пальцем
@@ -41,6 +47,7 @@ public class Player : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began) //начало касания к экрану
             {
+                audioSource.PlayOneShot(flapSound);
                 direction = Vector3.up * strength;
             }
         }
@@ -71,10 +78,12 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
+            audioSource.PlayOneShot(hitSound);
             FindObjectOfType<GameManager>().GameOver();
         }
         else if (other.gameObject.CompareTag("Scoring"))
         {
+            audioSource.PlayOneShot(scoreSound);
             FindObjectOfType<GameManager>().IncreaseScore();
         }
     }

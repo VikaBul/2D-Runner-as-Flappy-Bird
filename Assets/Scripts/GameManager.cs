@@ -15,9 +15,14 @@ public class GameManager : MonoBehaviour
     public GameObject exitButton;
     public int score { get; private set; }
 
+    public AudioSource audioSource;
+    //public AudioClip gameSound;
+
     private void Awake()
     {
         Application.targetFrameRate = 60; //частота кадров 60
+
+        audioSource.Play();
 
         player = FindObjectOfType<Player>();
         spawner = FindObjectOfType<Spawner>();
