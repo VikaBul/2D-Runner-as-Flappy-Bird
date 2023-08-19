@@ -1,6 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public Text scoreText;
     public TextMeshProUGUI bestScoreText;
+    public GameObject newCanvas;
     public GameObject playButton;
     public GameObject gameOver;
     public GameObject exitButton;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         spawner = FindObjectOfType<Spawner>();
         gameOver.SetActive(false);
+
         Pause();
     }
 
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
         playButton.SetActive(false);
         gameOver.SetActive(false);
         exitButton.SetActive(false);
+        newCanvas.SetActive(false);
 
         Time.timeScale = 1f;
         player.enabled = true;
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(true);
         exitButton.SetActive(true);
         bestScoreText.SetText($"BEST SCORE: {PlayerPrefs.GetInt("BestScore")}");
+        newCanvas.SetActive(true);
 
         Pause();
     }
