@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
 
     public Text scoreText;
+    public TextMeshProUGUI bestScoreText;
     public GameObject playButton;
     public GameObject gameOver;
     public GameObject exitButton;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
         playButton.SetActive(true);
         gameOver.SetActive(true);
         exitButton.SetActive(true);
+        bestScoreText.SetText($"BEST SCORE: {PlayerPrefs.GetInt("BestScore")}");
 
         Pause();
     }
@@ -60,6 +63,11 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore()
     {
         score++;
+        int bestScore = PlayerPrefs.GetInt("BestScore");
+        if (score > bestScore) 
+        {
+            PlayerPrefs.SetInt("BestScore", score);
+        }
         scoreText.text = score.ToString();
     }
 

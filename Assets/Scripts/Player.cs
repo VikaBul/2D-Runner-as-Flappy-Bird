@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer; //не буду использовать анимацию для прицы, а переключение между спрайтами
+    private SpriteRenderer spriteRenderer; //using switch between sprites instead of animation
     public Sprite[] sprites; //массив спрайтов, между которыми буду переключаться
     private int spriteIndex; //переменная для отслеживания текущего индекса в массиве
 
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         InvokeRepeating(nameof(AnimateSprite), 0.15f, 0.15f); //функция вызывается каждые 0,15 секунды
     }
 
-    private void OnEnable() //сбрасываю позицию игрока по у
+    private void OnEnable() //reset player position by y
     {
         Vector3 position = transform.position;
         position.y = 0f;
